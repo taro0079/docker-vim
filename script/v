@@ -1,0 +1,13 @@
+DOCKER_OPTIONS=(
+  "-e" "HOME=$HOME"
+)
+DOCKER_OPTIONS+=(
+  "-v" "$HOME:$HOME"
+  "-v" "/var/www:/var/www"
+  "-v" "/var/tmp:/var/tmp"
+)
+
+DOCKER_IMAGE="awesome-vim"
+
+docker run --rm -it -u $(id -u):$(id -g) "${DOCKER_OPTIONS[@]}" --workdir=$(pwd) "${DOCKER_IMAGE}" "$@"
+
